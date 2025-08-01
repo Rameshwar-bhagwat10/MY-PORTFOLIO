@@ -1,0 +1,103 @@
+.toggleBtn {
+  background: transparent;
+  border: 1px solid var(--text-color);
+  padding: 6px 10px;
+  font-size: 14px;
+  color: var(--text-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggleBtn:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+.themeSwitch {
+  width: 48px;
+  height: 26px;
+  border-radius: 999px;
+  background: #e0e0e0;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  /* Remove center icon flex */
+  justify-content: flex-start;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.themeSwitch[data-theme='dark'] {
+  background: #1e1e1e;
+}
+
+.themeSwitchIcon {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #222e50;
+  transition: left 0.3s, background 0.3s, color 0.3s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.themeSwitch[data-theme='dark'] .themeSwitchIcon {
+  left: 24px;
+  background: #fbc02d;
+  color: #222e50;
+}
+
+.themeSwitch:not([data-theme='dark']) .themeSwitchIcon {
+  left: 2px;
+  background: #fff;
+  color: #222e50;
+}
+
+/* Optional: add a subtle glow when active */
+
+
+/* Hide sun/moon side icons, only show the icon in the knob */
+.themeSwitchSun,
+.themeSwitchMoon {
+  display: none;
+}
+ 
+
+.themeSwitchSun {
+  left: 8px;
+  color: #fbc02d;
+  opacity: 1;
+}
+
+.themeSwitchMoon {
+  right: 8px;
+  color: #fff;
+  opacity: 1;
+}
+
+.themeSwitch[data-theme='dark'] .themeSwitchSun {
+  opacity: 0.5;
+}
+
+.themeSwitch[data-theme='dark'] .themeSwitchMoon {
+  opacity: 1;
+}
+
+.themeSwitch:not([data-theme='dark']) .themeSwitchMoon {
+  opacity: 0.5;
+}
+
+.themeSwitch:not([data-theme='dark']) .themeSwitchSun {
+  opacity: 1;
+}

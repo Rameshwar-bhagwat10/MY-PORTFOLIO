@@ -1,0 +1,21 @@
+npm install react-icons react-toastify --legacy-peer-deps
+
+npm install aos react-responsive-modal --legacy-peer-deps
+npm install aos
+
+npm install swiper react-modal-image --legacy-peer-deps
+
+npm install swiper react-responsive-modal
+npm install swiper react-responsive-modal --legacy-peer-deps
+
+npm install framer-motion react-typed --legacy-peer-deps
+
+npm install react-tooltip --legacy-peer-deps
+
+npm install aos react-circular-progressbar react-tooltip --legacy-peer-deps
+npm install react@18.3.1 react-dom@18.3.1 --save
+
+npm install react-live
+npm install prism-react-renderer
+npm install prism-react-renderer
+npm install react-live prism-react-renderer

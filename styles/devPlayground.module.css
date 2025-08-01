@@ -1,0 +1,299 @@
+.devPlaygroundSection {
+  padding: 100px 20px;
+  background: transparent;
+  border-radius: 16px;
+  margin-top: 80px;
+  transition: background 0.3s;
+}
+
+[data-theme="dark"] .devPlaygroundSection {
+  background: transparent;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 32px;
+  color: #000000;
+  letter-spacing: 0.5px;
+}
+
+[data-theme="dark"] .title {
+  color: #ffffff;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #bb009f;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Editor wrapper styled like project card */
+.editorWrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(159, 0, 159, 0.07);
+  background: transparent;
+  border: 2px solid #67006e;
+  overflow: hidden;
+  transition: background 0.3s, border 0.3s;
+}
+
+.editorWrapper:hover {
+  border: 2px solid #d800ca;
+  background: linear-gradient(135deg, #fff 30%, #ffd4f471 43%, #ffbdbd76 66%, #fff 100%);
+  z-index: 2;
+}
+
+[data-theme="dark"] .editorWrapper {
+  background: transparent;
+  border: 2px solid #67006e;
+  box-shadow: 0 2px 12px rgba(255, 0, 212, 0.10);
+}
+
+[data-theme="dark"] .editorWrapper:hover {
+  border: 2px solid #d800ca;
+  background: linear-gradient(135deg, #3a005574 0%, #59004371 33%, #5b000076 66%, #54120074 100%);
+}
+
+.editorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #2d2d2d;
+  color: #ffffff;
+}
+
+.editorHeader button {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.editorHeader button:hover {
+  color: #fff;
+}
+
+.tabGroup {
+  display: flex;
+  gap: 4px;
+  margin-left: 20px;
+}
+
+.tabBtn {
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 15px;
+  padding: 6px 16px;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  position: relative;
+}
+
+.tabBtn:focus {
+  outline: 2px solid #0070f3;
+  z-index: 2;
+}
+
+.activeTab {
+  background: #fff;
+  color: #0070f3;
+  font-weight: bold;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+}
+
+[data-theme="dark"] .tabBtn {
+  color: #bbb;
+  background: transparent;
+}
+
+[data-theme="dark"] .activeTab {
+  background: #1e293b;
+  color: #60a5fa;
+}
+
+.themeBtn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.themeBtn:focus {
+  outline: 2px solid #0070f3;
+}
+
+.editorArea {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+}
+
+[data-theme="dark"] .editorArea {
+  background: #1e293b;
+}
+
+.lineNumbers {
+  user-select: none;
+  color: #bdbdbd;
+  background: transparent;
+  font-family: 'Fira Mono', monospace;
+  font-size: 13px;
+  padding: 20px 8px 20px 12px;
+  text-align: right;
+  min-width: 32px;
+  border-right: 1px solid #e0e0e0;
+  margin: 0;
+  height: 100%;
+}
+
+[data-theme="dark"] .lineNumbers {
+  color: #444c56;
+  border-right: 1px solid #222b3a;
+}
+
+.editor {
+  width: 100%;
+  min-height: 250px;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  padding: 16px;
+  outline: none;
+  border: none;
+  resize: vertical;
+  background-color: #ffffff;
+  color: #000000;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 0 0 8px 8px;
+}
+
+[data-theme="dark"] .editor {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #888;
+  background: #f3f4f6;
+  padding: 6px 16px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top: 1px solid #e0e0e0;
+  min-height: 28px;
+}
+
+[data-theme="dark"] .statusBar {
+  background: #232b3a;
+  color: #aaa;
+  border-top: 1px solid #222b3a;
+}
+
+.btnGroup button {
+  background: #0070f3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: background 0.2s, color 0.2s;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btnGroup button:last-child {
+  margin-right: 0;
+}
+
+.btnGroup button:focus {
+  outline: 2px solid #0070f3;
+}
+
+.btnGroup button:hover {
+  background: #0059c1;
+  color: #fff;
+}
+
+.previewContainer {
+  background: #f9f9f9;
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 20px;
+  border-radius: 0 0 10px 10px;
+}
+
+[data-theme="dark"] .previewContainer {
+  background: #1e293b;
+  border-top: 1px solid #444;
+}
+
+.preview {
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+[data-theme="dark"] .preview {
+  background: #232b3a;
+}
+
+@media screen and (max-width: 768px) {
+  .editor {
+    min-height: 160px;
+    font-size: 13px;
+  }
+
+  .preview {
+    height: 220px;
+  }
+
+  .btnGroup button {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  .editorHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .tabGroup {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+  .statusBar {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+  .lineNumbers {
+    font-size: 11px;
+    padding: 16px 4px 16px 6px;
+    min-width: 22px;
+  }
+}

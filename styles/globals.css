@@ -1,48 +1,65 @@
-
-html {
-  scroll-behavior: smooth;
+/* Global styles for the application */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
+  color: inherit;
   text-decoration: none;
-  color: #0070f3;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+* {
+  box-sizing: border-box;
 }
 
-section {
-  padding-bottom: 50px;
-  scroll-margin-top: 50px; /* ensures scroll-to-section isn't hidden behind navbar */
-}
-
-form input,
-form textarea {
-  display: block;
-  margin-bottom: 15px;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-}
+/* CSS Variables for theme support */
 :root {
-  --bg-color: white;
-  --text-color: black;
-  --card-bg: #ffffff;
-  --section-bg: #f3f4f5;
+  --text: #1f2937;
+  --accent: #6366f1;
+  --background: #ffffff;
 }
 
-[data-theme='dark'] {
-  --bg-color: #090815;
-  --text-color: white;
-  --card-bg: #1e293b;
-  --section-bg: #111827;
+[data-theme="dark"] {
+  --text: #f9fafb;
+  --accent: #818cf8;
+  --background: #111827;
 }
 
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: all 0.3s ease;
+/* Toast Container Customization */
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.9) 0%,
+    rgba(16, 185, 129, 0.9) 100%
+  );
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.9) 0%,
+    rgba(220, 38, 38, 0.9) 100%
+  );
+}
+
+.Toastify__toast--info {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.9) 0%,
+    rgba(37, 99, 235, 0.9) 100%
+  );
 }

@@ -390,22 +390,117 @@
   }
 }
 
-  .socialRow a {
-    width: 32px;
-    height: 32px;
-    font-size: 1.2rem;
+/* New styles for improved contact form */
+.errorInput {
+  border-color: #ef4444 !important;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.15) !important;
+}
+
+.errorText {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+  font-weight: 500;
+}
+
+.messageInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.charCount {
+  color: #64748b;
+}
+
+[data-theme="dark"] .charCount {
+  color: #94a3b8;
+}
+
+.minChars {
+  color: #f59e0b;
+  font-weight: 500;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.submitBtn.loading {
+  background: #6366f1;
+  cursor: not-allowed;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.statusIcon {
+  margin-left: 8px;
+  font-size: 16px;
+  animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.formNote {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 16px;
+  text-align: center;
+  font-style: italic;
+}
+
+[data-theme="dark"] .formNote {
+  color: #94a3b8;
+}
+
+.resetBtn {
+  background: #6b7280;
+  min-width: 100px;
+}
+
+.resetBtn:hover {
+  background: #4b5563;
+}
+
+/* Responsive updates */
+@media screen and (max-width: 768px) {
+  .buttonGroup {
+    flex-direction: column;
+    gap: 8px;
   }
-  .inputGroup input,
-  .inputGroup textarea {
-    width: 70vw;
-    font-size: 13px;
-    padding: 8px 6px 8px 6px;
+  
+  .submitBtn,
+  .resetBtn {
+    width: 100%;
+    min-width: unset;
   }
-  .info,
-  .form {
-    width: 80vw;
-    padding: 8px 2px;
+}
+
+@media screen and (max-width: 425px) {
+  .messageInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
   }
+}
 
 
 

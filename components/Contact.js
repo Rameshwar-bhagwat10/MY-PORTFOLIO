@@ -1,6 +1,6 @@
 import styles from '../styles/contact.module.css';
-import { useState } from 'react';
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter, FaRegCopy, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter, FaRegCopy, FaCheckCircle, FaTimesCircle, FaPaperPlane, FaSpinner } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,9 +11,22 @@ export default function Contact() {
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [charCount, setCharCount] = useState(0);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors({ ...fieldErrors, [name]: '' });
+    }
+    
+    // Update character count for message field
+    if (name === 'message') {
+      setCharCount(value.length);
+    }
   };
 
   const handleCopy = () => {
@@ -23,42 +36,106 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 1200);
   };
 
+  const validateForm = () => {
+    const errors = {};
+    
+    // Name validation
+    if (!form.name.trim()) {
+      errors.name = 'Name is required';
+    } else if (form.name.trim().length < 2) {
+      errors.name = 'Name must be at least 2 characters';
+    }
+    
+    // Email validation
+    if (!form.email.trim()) {
+      errors.email = 'Email is required';
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(form.email)) {
+        errors.email = 'Please enter a valid email address';
+      }
+    }
+    
+    // Subject validation
+    if (!form.subject.trim()) {
+      errors.subject = 'Subject is required';
+    } else if (form.subject.trim().length < 3) {
+      errors.subject = 'Subject must be at least 3 characters';
+    }
+    
+    // Message validation
+    if (!form.message.trim()) {
+      errors.message = 'Message is required';
+    } else if (form.message.trim().length < 10) {
+      errors.message = 'Message must be at least 10 characters';
+    } else if (form.message.trim().length > 1000) {
+      errors.message = 'Message must be less than 1000 characters';
+    }
+    
+    return errors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.subject || !form.message) {
-      toast.error('Please fill in all fields');
+    
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      const firstError = Object.values(errors)[0];
+      toast.error(firstError);
       setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus(null), 1200);
+      setTimeout(() => setSubmitStatus(null), 2000);
       return;
     }
+    
+    setFieldErrors({});
     setLoading(true);
     setSubmitStatus(null);
+    
     try {
-      const res = await fetch('http://localhost:5000/api/contact', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form)
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim().toLowerCase(),
+          subject: form.subject.trim(),
+          message: form.message.trim()
+        })
       });
+      
+      const data = await res.json();
+      
       if (res.ok) {
-        toast.success('Message sent successfully!');
+        toast.success(data.message || 'Message sent successfully! Check your email for confirmation.');
         setForm({ name: '', email: '', subject: '', message: '' });
+        setCharCount(0);
         setSubmitStatus('success');
       } else {
-        toast.error('Failed to send message. Try again later.');
+        toast.error(data.error || 'Failed to send message. Please try again.');
         setSubmitStatus('error');
       }
-    } catch {
-      toast.error('Failed to send message. Try again later.');
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast.error('Network error. Please check your connection and try again.');
       setSubmitStatus('error');
     }
+    
     setLoading(false);
-    setTimeout(() => setSubmitStatus(null), 1200);
+    setTimeout(() => setSubmitStatus(null), 3000);
   };
 
   const handleReset = () => {
     setForm({ name: '', email: '', subject: '', message: '' });
     setSubmitStatus(null);
+    setFieldErrors({});
+    setCharCount(0);
   };
+
+  // Initialize character count
+  useEffect(() => {
+    setCharCount(form.message.length);
+  }, [form.message]);
 
   return (
     <section id="contact" className={styles.contactSection} data-aos="fade-up">
@@ -114,11 +191,14 @@ export default function Contact() {
               value={form.name}
               onChange={handleChange}
               required
-              autoComplete="off"
+              autoComplete="name"
               placeholder=" "
+              className={fieldErrors.name ? styles.errorInput : ''}
             />
-            <label>Name</label>
+            <label>Full Name *</label>
+            {fieldErrors.name && <span className={styles.errorText}>{fieldErrors.name}</span>}
           </div>
+          
           <div className={styles.inputGroup}>
             <input
               type="email"
@@ -126,11 +206,14 @@ export default function Contact() {
               value={form.email}
               onChange={handleChange}
               required
-              autoComplete="off"
+              autoComplete="email"
               placeholder=" "
+              className={fieldErrors.email ? styles.errorInput : ''}
             />
-            <label>Email</label>
+            <label>Email Address *</label>
+            {fieldErrors.email && <span className={styles.errorText}>{fieldErrors.email}</span>}
           </div>
+          
           <div className={styles.inputGroup}>
             <input
               type="text"
@@ -140,9 +223,12 @@ export default function Contact() {
               required
               autoComplete="off"
               placeholder=" "
+              className={fieldErrors.subject ? styles.errorInput : ''}
             />
-            <label>Subject</label>
+            <label>Subject *</label>
+            {fieldErrors.subject && <span className={styles.errorText}>{fieldErrors.subject}</span>}
           </div>
+          
           <div className={styles.inputGroup}>
             <textarea
               name="message"
@@ -150,38 +236,60 @@ export default function Contact() {
               onChange={handleChange}
               required
               placeholder=" "
+              rows="5"
+              maxLength="1000"
+              className={fieldErrors.message ? styles.errorInput : ''}
             />
-            <label>Message</label>
+            <label>Message *</label>
+            <div className={styles.messageInfo}>
+              <span className={styles.charCount}>
+                {charCount}/1000 characters
+              </span>
+              {charCount < 10 && charCount > 0 && (
+                <span className={styles.minChars}>Minimum 10 characters</span>
+              )}
+            </div>
+            {fieldErrors.message && <span className={styles.errorText}>{fieldErrors.message}</span>}
           </div>
-          <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 8 }}>
+          
+          <div className={styles.buttonGroup}>
             <button
               type="submit"
-              className={styles.submitBtn}
+              className={`${styles.submitBtn} ${loading ? styles.loading : ''}`}
               disabled={loading}
-              style={{
-                opacity: loading ? 0.7 : 1,
-                pointerEvents: loading ? 'none' : 'auto',
-                position: 'relative',
-                transition: 'all 0.2s'
-              }}
             >
-              {loading ? 'Sending...' : 'Send Message'}
+              {loading ? (
+                <>
+                  <FaSpinner className={styles.spinner} />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <FaPaperPlane />
+                  Send Message
+                </>
+              )}
               {submitStatus === 'success' && (
-                <FaCheckCircle style={{ color: '#22c55e', marginLeft: 8, fontSize: 18, verticalAlign: 'middle', animation: 'popIn 0.5s' }} />
+                <FaCheckCircle className={styles.statusIcon} style={{ color: '#22c55e' }} />
               )}
               {submitStatus === 'error' && (
-                <FaTimesCircle style={{ color: '#ef4444', marginLeft: 8, fontSize: 18, verticalAlign: 'middle', animation: 'popIn 0.5s' }} />
+                <FaTimesCircle className={styles.statusIcon} style={{ color: '#ef4444' }} />
               )}
             </button>
+            
             <button
               type="button"
               className={styles.resetBtn}
               onClick={handleReset}
               disabled={loading}
             >
-              Reset
+              Reset Form
             </button>
           </div>
+          
+          <p className={styles.formNote}>
+            * Required fields. I&apos;ll get back to you within 24-48 hours.
+          </p>
         </form>
       </div>
     </section>

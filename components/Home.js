@@ -2,7 +2,7 @@ import styles from '../styles/home.module.css';
 import Image from 'next/image';
 import { ReactTyped } from 'react-typed';
 import { useState } from 'react';
-import profilePic from '../public/assets/profile.png';
+import profilePic from '../public/assets/Ram.jpg';
 import ChatBot from './ChatBot';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Head from 'next/head';

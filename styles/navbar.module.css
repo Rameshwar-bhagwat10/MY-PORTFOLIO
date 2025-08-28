@@ -67,14 +67,161 @@
   color: #00e5ff;
 }
 
+/* Visitor Counter Styles */
+.visitorCounter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(252, 37, 144, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(252, 37, 144, 0.2);
+  box-shadow: 0 4px 16px rgba(252, 37, 144, 0.1);
+  animation: visitorCounterSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-right: 20px;
+}
+
+.visitorIcon {
+  color: #fc2590;
+  font-size: 1rem;
+  animation: visitorIconPulse 2s ease-in-out infinite;
+}
+
+.visitorText {
+  color: #fc2590;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #fc2590 0%, #f8bd57 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes visitorCounterSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes visitorIconPulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+[data-theme="dark"] .visitorCounter {
+  background: rgba(252, 37, 144, 0.15);
+  border-color: rgba(252, 37, 144, 0.3);
+  box-shadow: 0 4px 20px rgba(252, 37, 144, 0.2);
+}
+
+[data-theme="dark"] .visitorIcon {
+  color: #fc2590;
+}
+
+/* New visitor welcome animation */
+.newVisitor {
+  animation: welcomeVisitor 1s ease-out;
+}
+
+@keyframes welcomeVisitor {
+  0% {
+    transform: scale(0.8);
+    box-shadow: 0 0 0 0 rgba(252, 37, 144, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(252, 37, 144, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(252, 37, 144, 0);
+  }
+}
+
+/* Offline indicator */
+.offlineIndicator {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-left: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .visitorCounter {
+    display: none; /* Hide on mobile to keep navbar clean */
+  }
+}
+
+@media (max-width: 999px) and (min-width: 769px) {
+  .visitorCounter {
+    margin-right: 10px;
+    padding: 6px 12px;
+  }
+  
+  .visitorText {
+    font-size: 0.8rem;
+  }
+}
+
 .activeNav {
+  position: relative;
   color: #fc2590;
   font-weight: 700;
   background: linear-gradient(90deg, #fc2590 0%, #f8bd57 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: color 0.3s;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.activeNav::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #fc2590 0%, #f8bd57 100%);
+  border-radius: 2px;
+  animation: underlineSlide 0.6s ease-out, underlineGlow 2s ease-in-out infinite 0.6s;
+  box-shadow: 0 2px 12px rgba(252, 37, 144, 0.4);
+}
+
+@keyframes underlineSlide {
+  from {
+    width: 0%;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes underlineGlow {
+  0%, 100% { 
+    box-shadow: 0 2px 12px rgba(252, 37, 144, 0.4);
+    transform: translateX(-50%) scaleX(1);
+  }
+  50% { 
+    box-shadow: 0 4px 20px rgba(252, 37, 144, 0.6);
+    transform: translateX(-50%) scaleX(1.05);
+  }
 }
 
 [data-theme="dark"] .activeNav {
@@ -84,7 +231,11 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: color 0.3s;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .activeNav::after {
+  box-shadow: 0 2px 16px rgba(252, 37, 144, 0.6);
 }
 
 .navLinks {
@@ -95,15 +246,35 @@
 }
 
 .navLinks a {
+  position: relative;
   text-decoration: none;
   color: var(--text);
   font-weight: 500;
-  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 8px 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.navLinks a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #fc2590 0%, #f8bd57 100%);
+  border-radius: 1px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navLinks a:hover {
   color: var(--accent);
   transform: translateY(-2px);
+}
+
+.navLinks a:hover::before {
+  width: 100%;
 }
 
 .hamburger {

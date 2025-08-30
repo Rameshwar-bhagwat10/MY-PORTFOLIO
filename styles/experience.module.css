@@ -382,5 +382,71 @@
     margin-top: 2px;
     margin-right: 4px;
   }
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  .resumeBtnWrapper {
+    margin-top: 20px;
+  }
+  .resumeBtn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .experienceSection {
+    padding: 6px 0 2px 0;
+  }
+  
+  .title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .expGrid {
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .cardBox {
+    padding: 2px;
+    min-height: 50px;
+  }
+  
+  .avatar {
+    width: 22px;
+    height: 22px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+  }
+  
+  .content h4 {
+    font-size: 0.65rem;
+  }
+  
+  .content p {
+    font-size: 0.55rem;
+  }
+  
+  .featuresList {
+    font-size: 0.45rem;
+  }
+  
+  .skillBadge {
+    font-size: 0.4rem;
+    padding: 1px 2px;
+  }
+  
+  .company, .duration {
+    font-size: 0.55rem;
+    padding: 1px 4px;
+  }
+  
+  .resumeBtn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
 }
 

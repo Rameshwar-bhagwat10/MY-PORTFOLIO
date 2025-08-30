@@ -175,5 +175,104 @@
     bottom: 10px;
     width: 45px;
     height: 45px;
+    font-size: 1.1rem;
+  }
+  
+  .statsHeader h3 {
+    font-size: 1rem;
+  }
+  
+  .statNumber {
+    font-size: 1rem;
+  }
+  
+  .statLabel {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsContainer {
+    right: 8px;
+    bottom: 60px;
+    min-width: 240px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  .toggleButton {
+    right: 8px;
+    bottom: 8px;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .statsHeader {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+  
+  .statsHeader h3 {
+    font-size: 0.9rem;
+  }
+  
+  .statsGrid {
+    gap: 8px;
+  }
+  
+  .statCard {
+    padding: 8px;
+    gap: 8px;
+  }
+  
+  .statIcon {
+    font-size: 1rem;
+  }
+  
+  .statNumber {
+    font-size: 0.9rem;
+  }
+  
+  .statLabel {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .statsContainer {
+    right: 5px;
+    bottom: 55px;
+    min-width: 220px;
+    padding: 10px;
+  }
+  
+  .toggleButton {
+    right: 5px;
+    bottom: 5px;
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+  
+  .statsHeader h3 {
+    font-size: 0.85rem;
+  }
+  
+  .statCard {
+    padding: 6px;
+    gap: 6px;
+  }
+  
+  .statIcon {
+    font-size: 0.9rem;
+  }
+  
+  .statNumber {
+    font-size: 0.8rem;
+  }
+  
+  .statLabel {
+    font-size: 0.7rem;
   }
 }

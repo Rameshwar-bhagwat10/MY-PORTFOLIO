@@ -300,13 +300,203 @@
   .headerLeft h1 {
     font-size: 1.4rem;
   }
+  .headerLeft .title {
+    font-size: 1rem;
+  }
   .sectionCard {
     padding: 10px 8px;
     border-radius: 8px;
+  }
+  .sectionCard h3 {
+    font-size: 1rem;
   }
   .timelineIcon {
     width: 24px;
     height: 24px;
     font-size: 0.9rem;
+  }
+  .timeline {
+    padding-left: 12px;
+  }
+  .contactInfo a {
+    font-size: 0.9rem;
+  }
+  .techBadge {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
+  .langBadge {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
+  .projectItem {
+    padding: 8px 10px;
+  }
+  .certItem {
+    font-size: 0.9rem;
+    padding: 5px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resumeWrapper {
+    padding: 8px 1px;
+    margin: 16px auto;
+  }
+  
+  .resumeHeader {
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .headerLeft h1 {
+    font-size: 1.2rem;
+  }
+  
+  .headerLeft .title {
+    font-size: 0.9rem;
+  }
+  
+  .headerRight {
+    gap: 6px;
+  }
+  
+  .iconBtn {
+    font-size: 1rem;
+    padding: 4px 6px;
+  }
+  
+  .downloadBtn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .resumeMain {
+    gap: 12px;
+  }
+  
+  .leftCol, .rightCol {
+    gap: 12px;
+  }
+  
+  .profilePhoto {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .sectionCard {
+    padding: 8px 6px;
+  }
+  
+  .sectionCard h3 {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  
+  .timeline {
+    padding-left: 10px;
+    gap: 12px;
+  }
+  
+  .timelineItem {
+    gap: 8px;
+  }
+  
+  .timelineIcon {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+  }
+  
+  .timelineDate {
+    font-size: 0.8rem;
+  }
+  
+  .contactInfo a {
+    font-size: 0.8rem;
+  }
+  
+  .techBadge {
+    font-size: 0.8rem;
+    padding: 3px 6px;
+  }
+  
+  .langBadge {
+    font-size: 0.8rem;
+    padding: 3px 6px;
+  }
+  
+  .projectItem {
+    padding: 6px 8px;
+  }
+  
+  .projectLinks a {
+    font-size: 0.85rem;
+  }
+  
+  .projectTech {
+    font-size: 0.8rem;
+  }
+  
+  .certItem {
+    font-size: 0.8rem;
+    padding: 4px 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .resumeWrapper {
+    padding: 6px 0;
+    margin: 12px auto;
+  }
+  
+  .headerLeft h1 {
+    font-size: 1.1rem;
+  }
+  
+  .headerLeft .title {
+    font-size: 0.8rem;
+  }
+  
+  .downloadBtn {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .profilePhoto {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .sectionCard {
+    padding: 6px 4px;
+  }
+  
+  .sectionCard h3 {
+    font-size: 0.8rem;
+  }
+  
+  .timeline {
+    padding-left: 8px;
+  }
+  
+  .timelineIcon {
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+  }
+  
+  .contactInfo a {
+    font-size: 0.75rem;
+  }
+  
+  .techBadge {
+    font-size: 0.7rem;
+    padding: 2px 4px;
+  }
+  
+  .langBadge {
+    font-size: 0.7rem;
+    padding: 2px 4px;
   }
 }

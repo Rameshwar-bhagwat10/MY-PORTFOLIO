@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import '../styles/globals.css';
+import '../styles/mobile-utils.css';
 import Layout from '../components/Layout';
 import { ThemeProvider } from '../context/ThemeContext';
 

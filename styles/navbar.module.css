@@ -161,8 +161,49 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+  
+  .logo {
+    font-size: 20px;
+    margin-left: 0;
+  }
+  
   .visitorCounter {
     display: none; /* Hide on mobile to keep navbar clean */
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 8px 12px;
+  }
+  
+  .logo {
+    font-size: 18px;
+  }
+  
+  .hamburger {
+    font-size: 24px;
+    padding: 4px 8px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar {
+    padding: 6px 10px;
+  }
+  
+  .logo {
+    font-size: 16px;
+  }
+  
+  .hamburger {
+    font-size: 22px;
+    padding: 3px 6px;
+    margin-right: 8px;
   }
 }
 

@@ -19,22 +19,64 @@ const Home = () => {
   return (
     <>
       <Head>
-        {/* If you have any <link> for custom fonts here, move them to pages/_document.js as per Next.js best practices.
+        {/* Primary Meta Tags */}
+        <title>Rameshwar Bhagwat | Full-Stack Developer Portfolio</title>
+        <meta
+          name="description"
+          content="Welcome to the portfolio of Rameshwar Bhagwat — a passionate Full-Stack Developer, UI/UX enthusiast, and tech explorer. Explore my projects, skills, and ways to connect."
+        />
+        <meta
+          name="keywords"
+          content="Rameshwar Bhagwat, Full-Stack Developer, Web Developer, Portfolio, UI/UX, Next.js, React, MongoDB, Node.js"
+        />
+        <meta name="author" content="Rameshwar Bhagwat" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:title" content="Rameshwar Bhagwat | Full-Stack Developer Portfolio" />
+        <meta
+          property="og:description"
+          content="Check out my portfolio to see my projects, skills, and contact details. Let's build something great together!"
+        />
+        <meta property="og:image" content="/assets/ProfilePic.jpg" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://your-portfolio-domain.com" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Rameshwar Bhagwat | Full-Stack Developer Portfolio" />
+        <meta
+          name="twitter:description"
+          content="Passionate about building responsive web apps and creating amazing user experiences."
+        />
+        <meta name="twitter:image" content="/assets/ProfilePic.jpg" />
+
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+
+        {/* Fonts (optional) */}
         <link
-          href='https://fonts.googleapis.com/css?family=Outfit&display=optional'
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap"
           rel="stylesheet"
-        /> */}
+        />
       </Head>
+
       <section id="home" className={styles.home}>
         <div className={styles.container}>
           {/* Profile image at the top */}
           <div className={styles.imageWrapper}>
-            <Image src={profilePic} alt="Profile" className={styles.profileImg} priority />
+            <Image
+              src={profilePic}
+              alt="Rameshwar Bhagwat - Full-Stack Developer"
+              className={styles.profileImg}
+              priority
+              title="Rameshwar Bhagwat"
+            />
           </div>
+
           {/* All texts and buttons below the image */}
           <div className={styles.intro}>
             <h1 className={styles.outfitHeading}>
-              Hello, I&apos;m <span className={styles.highlight}>Rameshwar bhagwat</span>
+              Hello, I&apos;m <span className={styles.highlight}>Rameshwar Bhagwat</span>
             </h1>
             <ReactTyped
               className={styles.typed}
@@ -46,20 +88,21 @@ const Home = () => {
             <p className={styles.description}>
               Passionate about building responsive web applications and interactive user experiences.
             </p>
+
             <div className={styles.buttonRow}>
               <a href="#projects" className={styles.ctaBtn}>View Projects</a>
               <a href="#contact" className={styles.contactBtn}>Contact Me</a>
+
               {/* Floating Chat Button */}
               <button className={styles.chatToggle} onClick={() => setIsChatOpen(!isChatOpen)}>
-              {isChatOpen ? '✖ Close Chat' : 'Chat with Me'}
-            </button>
+                {isChatOpen ? '✖ Close Chat' : 'Chat with Me'}
+              </button>
             </div>
-            
-            
 
             {isChatOpen && <ChatBot closeChat={() => setIsChatOpen(false)} />}
+
             <div className={styles.socialRow}>
-              {SOCIALS.map(s => (
+              {SOCIALS.map((s) => (
                 <a
                   key={s.label}
                   href={s.url}
@@ -75,13 +118,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-
-
       </section>
     </>
   );
 };
-
-
 
 export default Home;

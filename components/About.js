@@ -304,7 +304,7 @@ export default function About() {
                   }}
                 />
                 <Image
-                  src="/assets/Ram.jpg"
+                  src="/assets/ProfilePic.jpg"
                   alt="Rameshwar Bhagwat"
                   width={250}
                   height={250}

@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '.env.local' }); // <-- update this line if your file is .env.local
+require('dotenv').config({ path: '.env.local' });
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
@@ -13,6 +13,10 @@ app.post('/api/contact', async (req, res) => {
     return res.status(400).json({ error: 'All fields required' });
   }
 
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    return res.status(500).json({ error: 'Email server not configured' });
+  }
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -22,9 +26,12 @@ app.post('/api/contact', async (req, res) => {
   });
 
   try {
+    // Verify SMTP configuration before sending
+    await transporter.verify();
+
     await transporter.sendMail({
       from: `"${name}" <${email}>`,
-      to: process.env.EMAIL_USER, // use your env variable for receiver
+      to: process.env.EMAIL_USER,
       replyTo: email,
       subject: `[Portfolio] ${subject}`,
       text: `From: ${name} (${email})\nSubject: ${subject}\n\n${message}\n\n(Note: This email is not verified)`,
@@ -34,9 +41,8 @@ app.post('/api/contact', async (req, res) => {
              <hr>
              <p style="color:#888;font-size:13px;">Note: This email is not verified. Anyone can enter any email in the contact form.</p>`
     });
-    res.json({ success: true });
+    res.json({ success: true, message: 'Message sent successfully!' });
   } catch (err) {
-    // Enhanced error logging for debugging
     console.error('Email send error:', err);
     if (err.response) {
       console.error('SMTP response:', err.response);

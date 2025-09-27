@@ -54,10 +54,10 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
 
         {/* Fonts (optional) */}
-        <link
+        {/* <link
           href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap"
           rel="stylesheet"
-        />
+        /> */}
       </Head>
 
       <section id="home" className={styles.home}>
